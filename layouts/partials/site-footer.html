@@ -1,0 +1,12 @@
+<footer class="{{ .Site.Params.background_color_class | compare.Default "bg-black" }} bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between items-center">
+    <div>
+      <a class="f5 fw4 hover-white white-70 pv2 ph3 no-underline" href="{{ .Site.Home.Permalink }}" >
+        &copy; {{ with .Site.Copyright | compare.Default .Site.Title }} {{ . | safe.HTML }} {{ now.Format "2006"}} {{ end }}
+      </a>
+    </div>
+    <div class="white-70 pv2 ph3">
+      <span class="f5 fw4">Developed by <a href="https://digidub.ae" class="white-70 hover-white underline" target="_blank">DigiDub</a></span>
+    </div>
+  </div>
+</footer> 
