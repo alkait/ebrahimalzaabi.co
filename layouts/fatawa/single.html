@@ -1,0 +1,139 @@
+{{ define "main" }}
+<article class="fatwa-post">
+    <div class="fatwa-header">
+        <h1 class="fatwa-title">{{ .Title }}</h1>
+        <div class="fatwa-meta">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+            {{ with .Params.categories }}
+            <div class="fatwa-categories">
+                {{ range . }}
+                <span class="category">{{ . }}</span>
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
+    </div>
+
+    {{ with .Params.question }}
+    <div class="fatwa-question">
+        <div class="question-header">
+            <span class="icon">❓</span>
+            <h2>السؤال</h2>
+        </div>
+        <div class="question-content">
+            {{ . | safeHTML }}
+        </div>
+    </div>
+    {{ end }}
+
+    {{ with .Params.answer }}
+    <div class="fatwa-answer">
+        <div class="answer-header">
+            <span class="icon">📝</span>
+            <h2>الجواب</h2>
+        </div>
+        <div class="answer-content">
+            {{ . | safeHTML }}
+        </div>
+    </div>
+    {{ end }}
+</article>
+
+<style>
+.fatwa-post {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    direction: rtl;
+}
+
+.fatwa-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.fatwa-title {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.fatwa-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.fatwa-categories {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.category {
+    background-color: #f0f0f0;
+    padding: 0.2rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+}
+
+.fatwa-question, .fatwa-answer {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.question-header, .answer-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #eee;
+}
+
+.question-header h2, .answer-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #2c3e50;
+}
+
+.icon {
+    font-size: 1.5rem;
+}
+
+.fatwa-question {
+    background-color: #f8f9fa;
+    border-right: 4px solid #4CAF50;
+}
+
+.fatwa-answer {
+    background-color: #fff;
+    border-right: 4px solid #2196F3;
+}
+
+.question-content, .answer-content {
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .fatwa-post {
+        margin: 1rem auto;
+    }
+
+    .fatwa-title {
+        font-size: 1.5rem;
+    }
+
+    .fatwa-question, .fatwa-answer {
+        padding: 1rem;
+    }
+}
+</style>
+{{ end }} 

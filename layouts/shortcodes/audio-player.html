@@ -1,0 +1,21 @@
+{{ $src := .Get "src" }}
+
+<div class="audio-player-container my-4">
+  <audio controls class="w-full">
+    <source src="{{ $src }}" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
+
+<style>
+  .audio-player-container {
+    max-width: 100%;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  
+  .audio-player-container audio {
+    width: 100%;
+  }
+</style> 

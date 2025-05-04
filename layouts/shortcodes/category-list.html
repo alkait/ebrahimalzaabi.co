@@ -1,0 +1,10 @@
+<!-- List all categories sorted alphabetically with post counts -->
+<ul>
+  {{ range .Site.Taxonomies.categories.Alphabetical }}
+    {{ if gt .Count 0 }}
+      <li>
+        <a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a> ({{ .Count }})
+      </li>
+    {{ end }}
+  {{ end }}
+</ul> 

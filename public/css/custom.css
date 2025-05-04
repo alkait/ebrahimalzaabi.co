@@ -1,0 +1,242 @@
+header.cover {
+  min-height: 200px !important;
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+}
+
+header.cover .pv4,
+header.cover .pv6-l {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+/* Make publication thumbnails consistent size */
+.nested-copy-line-height a[href^="/publications/"] img {
+  width: 200px;
+  height: 260px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Custom styles for the publications page */
+
+/* Target the بحوث section specifically */
+/* First identify the section by finding where that heading text appears */
+.publications-page h2:contains("بحوث"), 
+.publications-page h2:nth-of-type(2) {
+    margin-top: 3rem !important;
+    display: block !important;
+}
+
+/* More aggressively target the research items */
+.publications-page h2:nth-of-type(2) ~ h3,
+article[class*="publications"] h2:nth-of-type(2) ~ h3,
+body:not(#fatawa-list) .nested-copy-line-height h2:nth-of-type(2) ~ h3 {
+    background: white !important;
+    border-radius: 10px !important;
+    padding: 1.5rem !important;
+    margin-bottom: 0 !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    transition: transform 0.3s ease !important;
+}
+
+.publications-page h2:nth-of-type(2) ~ h3:hover,
+article[class*="publications"] h2:nth-of-type(2) ~ h3:hover {
+    transform: translateY(-2px) !important;
+}
+
+/* Style the paragraph containing the download link */
+.publications-page h2:nth-of-type(2) ~ h3 + p,
+article[class*="publications"] h2:nth-of-type(2) ~ h3 + p,
+body:not(#fatawa-list) .nested-copy-line-height h2:nth-of-type(2) ~ h3 + p {
+    padding: 0 1.5rem 1.5rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 2rem !important;
+    background: white !important;
+    border-radius: 0 0 10px 10px !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+/* Style the download link */
+.publications-page h2:nth-of-type(2) ~ h3 + p a,
+article[class*="publications"] h2:nth-of-type(2) ~ h3 + p a,
+body:not(#fatawa-list) .nested-copy-line-height h2:nth-of-type(2) ~ h3 + p a {
+    display: inline-block !important;
+    color: #3498db !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+}
+
+.publications-page h2:nth-of-type(2) ~ h3 + p a:hover,
+article[class*="publications"] h2:nth-of-type(2) ~ h3 + p a:hover {
+    color: #2980b9 !important;
+}
+
+/* Target using direct attribute selectors for the بحوث section */
+[id="بحوث"] + h3,
+#content h2:last-of-type + h3 {
+    background: white !important;
+    border-radius: 10px !important;
+    padding: 1.5rem !important;
+    margin-bottom: 0 !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+[id="بحوث"] + h3 + p,
+#content h2:last-of-type + h3 + p {
+    padding: 0 1.5rem 1.5rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 2rem !important;
+    background: white !important;
+    border-radius: 0 0 10px 10px !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+/* Styles for audios page */
+.audios-page .audio-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
+  gap: 2rem !important;
+  margin-bottom: 3rem !important;
+}
+
+.audios-page .audio-card {
+  background: white !important;
+  border-radius: 10px !important;
+  padding: 1.5rem !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+  transition: transform 0.3s ease !important;
+  text-align: center !important;
+}
+
+.audios-page .audio-card:hover {
+  transform: translateY(-5px) !important;
+}
+
+.audios-page .audio-card h3 {
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+  font-size: 1.25rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 3em !important;
+}
+
+.audios-page .card-content {
+  margin-top: 1rem !important;
+}
+
+.audios-page .audio-link {
+  display: inline-block !important;
+  color: #3498db !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 5px !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.audios-page .audio-link:hover {
+  background-color: #f8f9fa !important;
+  color: #2980b9 !important;
+}
+
+@media (max-width: 768px) {
+  .audios-page .audio-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+    gap: 1rem !important;
+  }
+  
+  .audios-page .audio-card h3 {
+    font-size: 1rem !important;
+    height: 4em !important;
+  }
+}
+
+/* Audio card specific fixes */
+.audio-grid, .audio-card, .card-content, .audio-link {
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow: visible !important;
+}
+
+.audio-card h3, .audio-link {
+  unicode-bidi: plaintext !important;
+  direction: rtl !important;
+}
+
+.audio-card * {
+  max-width: 100% !important;
+}
+
+.audio-card {
+  display: block !important;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+/* Responsive header font size for long titles */
+header.cover h1.arabic-text {
+  font-size: 2.25rem !important; /* Default size */
+  line-height: 1.3 !important;
+  overflow-wrap: break-word !important;
+  hyphens: auto !important;
+  padding: 0 1rem !important;
+}
+
+/* Add more padding to h1 headings in section pages */
+h1.arabic-text.f2.f-subheadline-l.fw2.white-90.mb0.lh-title {
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+}
+
+/* Gradually reduce font size depending on title length */
+header.cover h1.arabic-text[data-length="long"] {
+  font-size: 2rem !important;
+}
+
+header.cover h1.arabic-text[data-length="very-long"] {
+  font-size: 1.75rem !important;
+}
+
+/* Media queries for better responsive behavior */
+@media (max-width: 768px) {
+  header.cover h1.arabic-text {
+    font-size: 1.85rem !important;
+    padding: 0 0.5rem !important;
+  }
+  
+  h1.arabic-text.f2.f-subheadline-l.fw2.white-90.mb0.lh-title {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+  
+  header.cover h1.arabic-text[data-length="long"] {
+    font-size: 1.5rem !important;
+  }
+  
+  header.cover h1.arabic-text[data-length="very-long"] {
+    font-size: 1.25rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  header.cover h1.arabic-text {
+    font-size: 1.5rem !important;
+  }
+  
+  h1.arabic-text.f2.f-subheadline-l.fw2.white-90.mb0.lh-title {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  header.cover h1.arabic-text[data-length="long"] {
+    font-size: 1.25rem !important;
+  }
+  
+  header.cover h1.arabic-text[data-length="very-long"] {
+    font-size: 1rem !important;
+  }
+} 

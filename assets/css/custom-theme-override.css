@@ -1,0 +1,160 @@
+/* Define font variables */
+:root {
+  --site-font: 'Traditional Arabic', 'Arabic Typesetting', 'Simplified Arabic', system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
+  --font-weight: 400 !important;
+  --letter-spacing: normal !important;
+}
+
+/* Global reset for all elements */
+* {
+  font-family: var(--site-font) !important;
+  letter-spacing: var(--letter-spacing) !important;
+  font-weight: var(--font-weight) !important;
+  text-transform: none !important;
+}
+
+/* Body and HTML level settings */
+html,
+body {
+  font-family: var(--site-font) !important;
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/* Override any Tachyons or theme classes */
+.helvetica,
+.avenir,
+.athelas,
+.georgia,
+.times,
+.bodoni,
+.calisto,
+.garamond,
+.baskerville,
+.sans-serif,
+.serif,
+[class*="helvetica"],
+[class*="avenir"],
+[class*="athelas"],
+[class*="georgia"],
+[class*="times"],
+[class*="bodoni"],
+[class*="calisto"],
+[class*="garamond"],
+[class*="baskerville"],
+[class*="sans-serif"],
+[class*="serif"],
+.tracked,
+.tracked-tight,
+.tracked-mega,
+.ttu,
+.ttl,
+.ttc,
+.ttn,
+.instapaper_ignoref,
+[class*="instapaper"] {
+  font-family: var(--site-font) !important;
+  letter-spacing: var(--letter-spacing) !important;
+  font-weight: var(--font-weight) !important;
+  text-transform: none !important;
+}
+
+/* Ensure RTL for text containers */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+div,
+article,
+section,
+header,
+footer,
+nav,
+aside,
+main {
+  direction: rtl !important;
+  text-align: right !important;
+  font-family: var(--site-font) !important;
+}
+
+/* Force RTL for specific elements */
+.site-title,
+.page-title,
+.post-title,
+.article-title,
+.header-title,
+[class*="title"],
+[class*="heading"] {
+  direction: rtl !important;
+  text-align: right !important;
+  font-family: var(--site-font) !important;
+}
+
+/* Handle dynamic content */
+*[class^="f"],  /* All Tachyons font size classes */
+*[class*=" f"], /* All Tachyons font size classes with space before */
+*[class*="-l"], /* All large viewport classes */
+*[class*="-m"], /* All medium viewport classes */
+*[class*="-ns"] /* All not-small viewport classes */ {
+  font-family: var(--site-font) !important;
+}
+
+/* Ensure links maintain the font */
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  font-family: var(--site-font) !important;
+}
+
+/* Override any !important declarations from the theme */
+body * {
+  font-family: var(--site-font) !important;
+}
+
+/* Arabic text specific styles */
+.arabic-text,
+[lang="ar"],
+[dir="rtl"] {
+  font-family: var(--site-font) !important;
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+/* Force RTL for specific elements */
+h1, h2, h3, h4, h5, h6,
+.site-title,
+.page-title,
+.post-title {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/* Tags styles */
+.tags-display {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  direction: rtl;
+}
+
+.tag-link {
+  display: inline-block;
+  margin-right: 0.5rem;
+  margin-left: 0;
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.tag-link:hover {
+  background-color: #f0f0f0;
+  text-decoration: none;
+} 

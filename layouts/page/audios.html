@@ -1,0 +1,101 @@
+{{ define "header" }}
+  <header class="cover bg-top" style="background-color: #333;">
+    <div class="bg-black-60">
+      {{ partial "site-navigation.html" . }}
+      <div class="tc-l pv4 pv6-l ph3 ph4-ns">
+        <h1 class="arabic-text f2 f-subheadline-l fw2 white-90 mb0 lh-title"
+            {{ if gt (len .Title) 50 }}
+              {{ if gt (len .Title) 80 }}
+                data-length="very-long"
+              {{ else }}
+                data-length="long"
+              {{ end }}
+            {{ end }}>
+          {{ .Title }}
+        </h1>
+        {{ with .Params.description }}
+          <h2 class="fw1 f5 f3-l white-80 measure-wide-l center mt3">
+            {{ . }}
+          </h2>
+        {{ end }}
+      </div>
+    </div>
+  </header>
+{{ end }}
+
+{{ define "main" }}
+  <article class="flex-l flex-wrap justify-between mw8 center ph3 arabic-text audios-page">
+    <header class="mt4 w-100">
+      <h1 class="arabic-text f1 mt3 mb1">
+        {{- .Title -}}
+      </h1>
+    </header>
+    
+    <div class="nested-copy-line-height lh-copy arabic-text f4 nested-links pr4-l w-100">
+      {{ .Content | safeHTML }}
+    </div>
+  </article>
+
+  <style>
+    .audios-page .audio-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
+      gap: 2rem !important;
+      margin-bottom: 3rem !important;
+    }
+    
+    .audios-page .audio-card {
+      background: white !important;
+      border-radius: 10px !important;
+      padding: 1.5rem !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+      transition: transform 0.3s ease !important;
+      text-align: center !important;
+    }
+    
+    .audios-page .audio-card:hover {
+      transform: translateY(-5px) !important;
+    }
+    
+    .audios-page .audio-card h3 {
+      margin-top: 0 !important;
+      margin-bottom: 1rem !important;
+      font-size: 1.25rem !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      height: 3em !important;
+    }
+    
+    .audios-page .card-content {
+      margin-top: 1rem !important;
+    }
+    
+    .audios-page .audio-link {
+      display: inline-block !important;
+      color: #3498db !important;
+      text-decoration: none !important;
+      font-weight: 500 !important;
+      padding: 0.5rem 1rem !important;
+      border-radius: 5px !important;
+      transition: background-color 0.3s ease !important;
+    }
+    
+    .audios-page .audio-link:hover {
+      background-color: #f8f9fa !important;
+      color: #2980b9 !important;
+    }
+    
+    @media (max-width: 768px) {
+      .audios-page .audio-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+        gap: 1rem !important;
+      }
+      
+      .audios-page .audio-card h3 {
+        font-size: 1rem !important;
+        height: 4em !important;
+      }
+    }
+  </style>
+{{ end }}
