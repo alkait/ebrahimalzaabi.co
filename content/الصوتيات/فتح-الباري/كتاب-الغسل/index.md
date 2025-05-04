@@ -1,6 +1,7 @@
 ---
 title: "كتاب الغسل - فتح الباري"
 type: "page"
+layout: "single"
 ---
 
 {{< audio-grid 

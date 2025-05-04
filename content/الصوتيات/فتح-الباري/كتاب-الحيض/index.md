@@ -1,6 +1,7 @@
 ---
 title: "كتاب الحيض - فتح الباري"
 type: "page"
+layout: "single"
 ---
 
 {{< audio-grid 

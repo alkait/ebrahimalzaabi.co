@@ -1,6 +1,7 @@
 ---
 title: "كتاب صلاة الجماعة - فتح الباري"
 type: "page"
+layout: "single"
 ---
 
 {{< audio-grid 

@@ -1,6 +1,7 @@
 ---
 title: "كتاب التيمم - فتح الباري"
 type: "page"
+layout: "single"
 ---
 
 {{< audio-grid 
