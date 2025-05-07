@@ -19,8 +19,6 @@ _build:
 <form id="question-form" style="max-width:400px;margin-top:2em;direction:rtl;text-align:right;">
   <label for="from_name">الاسم:</label><br>
   <input type="text" id="from_name" name="from_name" required style="width:100%;margin-bottom:1em;"><br>
-  <label for="from_email">البريد الإلكتروني:</label><br>
-  <input type="email" id="from_email" name="from_email" required style="width:100%;margin-bottom:1em;"><br>
   <label for="message">سؤالك:</label><br>
   <textarea id="message" name="message" rows="5" required style="width:100%;margin-bottom:1em;"></textarea><br>
   <button type="submit" style="width:100%;">إرسال</button>
