@@ -34,17 +34,21 @@ _build:
 document.addEventListener('DOMContentLoaded', function() {
   var form = document.getElementById('question-form');
   var status = document.getElementById('form-status');
+  var button = form.querySelector('button[type="submit"]');
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     status.textContent = '...جاري الإرسال';
+    button.disabled = true;
     emailjs.sendForm('service_fcyrk4j', 'template_zo43j1f', form)
       .then(function() {
         status.style.color = 'green';
-        status.textContent = 'تم إرسال سؤالك بنجاح. سنرد عليك قريباً.';
+        status.innerHTML = 'تم إرسال سؤالك بنجاح. لمتابعة الإجابة يرجى الاشتراك في قناتنا على اليوتيوب: <a href="https://www.youtube.com/@ebrahim_alzaabi" target="_blank">@ebrahim_alzaabi</a>';
         form.reset();
+        button.disabled = false;
       }, function(error) {
         status.style.color = 'red';
         status.textContent = 'حدث خطأ أثناء الإرسال. الرجاء المحاولة لاحقاً.';
+        button.disabled = false;
       });
   });
 });
