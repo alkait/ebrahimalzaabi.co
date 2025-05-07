@@ -8,12 +8,6 @@ _build:
   list: true
 ---
 
-## تصفح الفتاوى حسب التصنيف
-
-{{< category-list >}} 
-
----
-
 ## أرسل سؤالك الشرعي
 
 <form id="question-form" style="max-width:400px;margin-top:2em;direction:rtl;text-align:right;">
@@ -53,3 +47,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
+<hr style="margin:2em 0;">
+
+## تصفح الفتاوى حسب التصنيف
+
+{{< category-list >}} 
