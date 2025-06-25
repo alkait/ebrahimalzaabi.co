@@ -83,8 +83,19 @@
         </div>
       </div>
 
-      <div class="mt5">
-        {{ partial "latest-youtube.html" . }}
+      <div class="widgets-container flex flex-wrap justify-between mt5">
+        <!-- Elfsight Twitter Feed -->
+        <div class="widget-column w-100 w-50-l pr3-l">
+          <script src="https://static.elfsight.com/platform/platform.js" async></script>
+          <div class="elfsight-app-40cb07b9-21e1-44cb-880e-4c2c8f22be13" data-elfsight-app-lazy></div>
+        </div>
+
+        <!-- Latest YouTube Videos -->
+        <div class="widget-column w-100 w-50-l pl3-l youtube-widget-container">
+          <!-- Elfsight YouTube Gallery | Untitled YouTube Gallery -->
+          <script src="https://static.elfsight.com/platform/platform.js" async></script>
+          <div class="elfsight-app-58c02331-cb89-4b88-93ed-e7bbb8553fa3" data-elfsight-app-lazy></div>
+        </div>
       </div>
     </article>
   </div>
@@ -93,6 +104,13 @@
     .intro-link-container {
       text-align: center;
       padding: 2rem 0;
+    }
+    .youtube-widget-container {
+      height: 700px;
+      overflow: hidden;
+    }
+    .youtube-widget-container .elfsight-app-58c02331-cb89-4b88-93ed-e7bbb8553fa3 {
+      height: 100%;
     }
     .intro-link {
       display: inline-block;
