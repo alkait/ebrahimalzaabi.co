@@ -207,6 +207,12 @@ html body.boxed-layout.ma0.avenir.bg-near-white > footer {
   border-top-right-radius: 0 !important;
 }
 
+/* Footer text color override */
+html body.boxed-layout.ma0.avenir.bg-near-white > footer,
+html body.boxed-layout.ma0.avenir.bg-near-white > footer a {
+  color: #333333 !important;
+}
+
 /* Header styles */
 header.cover {
   min-height: 200px !important;
