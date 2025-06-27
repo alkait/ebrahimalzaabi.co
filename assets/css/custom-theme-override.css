@@ -285,4 +285,15 @@ html body.boxed-layout.ma0.avenir.bg-near-white {
   margin: 0 !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
+}
+
+/* Header title font size consistency */
+header .tc-l h1 {
+  font-size: 2.25rem !important; /* f2 in Tachyons */
+}
+
+@media screen and (min-width: 60em) {
+  header .tc-l h1 {
+    font-size: 3rem !important; /* Slightly larger for desktop */
+  }
 } 
