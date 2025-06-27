@@ -90,12 +90,24 @@
         }
         
         .book-card {
-          background: white;
+          background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 50%, #f0f4ff 100%);
           border-radius: 10px;
           padding: 1.5rem;
           box-shadow: 0 2px 4px rgba(0,0,0,0.1);
           transition: transform 0.3s ease;
           text-align: center;
+        }
+        
+        .book-card:first-child {
+          background: linear-gradient(135deg, #ffffff 0%, #fffbf0 50%, #fff3e0 100%);
+        }
+        
+        .book-card:nth-child(2) {
+          background: linear-gradient(135deg, #ffffff 0%, #fef5f5 50%, #fde8e8 100%);
+        }
+        
+        .book-card:nth-child(3) {
+          background: linear-gradient(135deg, #ffffff 0%, #fef9f3 50%, #fdebd0 100%);
         }
         
         .book-card:hover {
