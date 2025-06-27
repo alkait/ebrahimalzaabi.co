@@ -214,6 +214,9 @@ header.cover {
   padding-bottom: 2rem !important;
   width: 100% !important;
   margin: 0 !important;
+  background-image: url('/images/hero.jpg') !important;
+  background-size: cover !important;
+  background-position: center !important;
 }
 
 /* Fix header background color */
@@ -282,5 +285,4 @@ html body.boxed-layout.ma0.avenir.bg-near-white {
   margin: 0 !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
-  background-color: #333 !important;
 } 
