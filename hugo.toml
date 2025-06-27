@@ -5,7 +5,7 @@ title = 'الشيخ ابراهيم سيف الزعابي'
 theme = "ananke"
 
 [params]
-  custom_css = ["/css/custom.css"]  # Add our custom CSS file
+  custom_css = ["/css/custom.css", "css/custom-theme-override.css"]  # Add our custom CSS files
 
 [menu]
   [[menu.main]]

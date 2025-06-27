@@ -157,4 +157,125 @@ h1, h2, h3, h4, h5, h6,
 .tag-link:hover {
   background-color: #f0f0f0;
   text-decoration: none;
+}
+
+/* ===== BOXED LAYOUT STYLES ===== */
+
+/* Set gray background for the entire viewport */
+html,
+html body.boxed-layout.ma0.avenir.bg-near-white {
+  background-color: #e6e6e6 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Add visual separation with padding */
+html body.boxed-layout.ma0.avenir.bg-near-white {
+  padding: 30px 0 !important;
+  min-height: 100vh !important;
+  background-color: #e6e6e6 !important;
+}
+
+/* Main content, footer, and header: white box with max-width */
+html body.boxed-layout.ma0.avenir.bg-near-white > header,
+html body.boxed-layout.ma0.avenir.bg-near-white > main,
+html body.boxed-layout.ma0.avenir.bg-near-white > footer {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Header spacing - top of the box */
+html body.boxed-layout.ma0.avenir.bg-near-white > header {
+  margin-bottom: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+/* Main content spacing - middle of the box */
+html body.boxed-layout.ma0.avenir.bg-near-white > main {
+  padding: 2rem !important;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Footer connected to main */
+html body.boxed-layout.ma0.avenir.bg-near-white > footer {
+  padding: 1.5rem 2rem !important;
+  margin-top: 0 !important;
+  border-top: 1px solid #f0f0f0 !important;
+}
+
+/* Header also contained within the box */
+header.cover {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  background-size: cover !important;
+  background-position: center !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+  position: relative !important;
+  z-index: 1 !important;
+  /* Ensure header background shows over the white background */
+  background-color: transparent !important;
+}
+
+/* Header content styling */
+header.cover .bg-black-60,
+header.cover > div {
+  padding: 2rem 1rem !important;
+}
+
+/* Override Tachyons classes that interfere */
+html body.boxed-layout.ma0.avenir.bg-near-white .mw8 {
+  max-width: none !important;
+}
+
+html body.boxed-layout.ma0.avenir.bg-near-white .center {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Force override any Tachyons margin classes on body */
+html body.boxed-layout.ma0.avenir.bg-near-white {
+  margin: 0 !important;
+  padding: 30px 0 !important;
+  background-color: #e6e6e6 !important;
+}
+
+/* Responsive design */
+@media screen and (max-width: 1240px) {
+  html body.boxed-layout.ma0.avenir.bg-near-white > header,
+  html body.boxed-layout.ma0.avenir.bg-near-white > main,
+  html body.boxed-layout.ma0.avenir.bg-near-white > footer {
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+    max-width: calc(1200px - 40px) !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* Mobile: remove gray background and go full-width */
+  html,
+  html body.boxed-layout.ma0.avenir.bg-near-white {
+    background-color: #ffffff !important;
+    padding: 0 !important;
+  }
+  
+  html body.boxed-layout.ma0.avenir.bg-near-white > header,
+  html body.boxed-layout.ma0.avenir.bg-near-white > main,
+  html body.boxed-layout.ma0.avenir.bg-near-white > footer {
+    max-width: none !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    padding: 1rem !important;
+  }
+  
+  header.cover .bg-black-60,
+  header.cover > div {
+    padding: 1rem 0.5rem !important;
+  }
 } 
