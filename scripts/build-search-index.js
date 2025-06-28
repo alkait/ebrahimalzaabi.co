@@ -54,6 +54,10 @@ function buildHref(absPath) {
   return href;
 }
 
+function removeDiacritics(str) {
+  return str.replace(/[\u0610-\u061A\u064B-\u065F\u06D6-\u06ED]/g, "");
+}
+
 function cleanContent(rawContent) {
   // Remove simple HTML tags with a regex first (since markdown may contain inline HTML)
   const withoutHtml = rawContent.replace(/<[^>]*>/g, " ");
@@ -61,7 +65,8 @@ function cleanContent(rawContent) {
   const withoutMd = removeMd(withoutHtml);
   // Replace punctuation (Arabic and Latin) with spaces to improve tokenization
   const withoutPunct = withoutMd.replace(/[\.,!\?؛،:؛\-]/g, " ");
-  return withoutPunct.replace(/\s+/g, " ").trim();
+  const withoutDiac = removeDiacritics(withoutPunct);
+  return withoutDiac.replace(/\s+/g, " ").trim();
 }
 
 function processFile(absPath, filename) {
@@ -70,7 +75,8 @@ function processFile(absPath, filename) {
   // Markdown files – use front-matter
   if (filename.endsWith(".md")) {
     const parsed = matter(raw);
-    const title = parsed.data.title || path.basename(filename, ".md");
+    const rawTitle = parsed.data.title || path.basename(filename, ".md");
+    const title = removeDiacritics(rawTitle);
     const tags = parsed.data.tags || parsed.data.categories || [];
 
     // Combine all string fields from front-matter (e.g., question, answer, description …) with markdown body

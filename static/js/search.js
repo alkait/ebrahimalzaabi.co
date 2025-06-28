@@ -25,7 +25,14 @@
         this.ref("href");
 
         pagesIndex.forEach(function (doc) {
-          this.add(doc);
+          // Strip diacritics from title/tags/content before adding
+          const processed = {
+            ...doc,
+            title: stripDiacritics(doc.title),
+            tags: Array.isArray(doc.tags) ? doc.tags.map(stripDiacritics) : [],
+            content: stripDiacritics(doc.content),
+          };
+          this.add(processed);
         }, this);
 
         // Custom tokenizer separator to split on Arabic punctuation as well
@@ -36,9 +43,15 @@
       console.error("Unable to load Lunr index:", err);
     });
 
+  // Utility to strip Arabic diacritics
+  function stripDiacritics(str) {
+    return str.replace(/[\u0610-\u061A\u064B-\u065F\u06D6-\u06ED]/g, "");
+  }
+
   function performSearch(term) {
-    // Add trailing wildcard to each token for partial matches
-    const tokens = term.split(/[\s،؛]+/).filter(Boolean);
+    // Strip diacritics from user query
+    const raw = stripDiacritics(term);
+    const tokens = raw.split(/[\s،؛]+/).filter(Boolean);
     const wildcardQuery = tokens.map((t) => `${t}*`).join(" ");
     const results = lunrIndex.search(wildcardQuery);
     return results.map((res) => pagesIndex.find((page) => page.href === res.ref));
