@@ -70,6 +70,10 @@
     results.forEach((page) => {
       const card = document.createElement("div");
       card.className = "result-card";
+      card.style.cursor = "pointer";
+      card.addEventListener("click", () => {
+        window.location.href = page.href;
+      });
 
       const snippet = page.content ? page.content.slice(0, 120) + "…" : "";
 
