@@ -59,15 +59,26 @@
 
   function displayResults(results) {
     resultsEl.innerHTML = "";
+
     if (!results.length) {
-      resultsEl.innerHTML = "<li>لا توجد نتائج</li>";
+      const msg = document.createElement("p");
+      msg.textContent = "لا توجد نتائج";
+      resultsEl.appendChild(msg);
       return;
     }
 
     results.forEach((page) => {
-      const li = document.createElement("li");
-      li.innerHTML = `<a href="${page.href}">${page.title}</a>`;
-      resultsEl.appendChild(li);
+      const card = document.createElement("div");
+      card.className = "result-card";
+
+      const snippet = page.content ? page.content.slice(0, 120) + "…" : "";
+
+      card.innerHTML = `
+        <h3><a href="${page.href}">${page.title}</a></h3>
+        <p>${snippet}</p>
+      `;
+
+      resultsEl.appendChild(card);
     });
   }
 
