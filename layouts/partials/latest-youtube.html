@@ -1,3 +1,150 @@
-<!-- Elfsight YouTube Gallery | Untitled YouTube Gallery -->
-<script src="https://static.elfsight.com/platform/platform.js" async></script>
-<div class="elfsight-app-58c02331-cb89-4b88-93ed-e7bbb8553fa3" data-elfsight-app-lazy></div> 
+<!-- Custom YouTube Videos Widget -->
+<div class="custom-youtube-widget">
+  <h2 class="section-heading arabic-text tc mb4">أحدث الفيديوهات</h2>
+  <div class="youtube-grid" id="youtubeVideos">
+    <!-- Videos will be loaded here via JavaScript -->
+    <div class="loading-spinner">جاري التحميل...</div>
+  </div>
+</div>
+
+<style>
+  .custom-youtube-widget {
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+  }
+  
+  .section-heading {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .youtube-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .youtube-video-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+  }
+  
+  .youtube-video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    background-color: #f0f0f0;
+  }
+  
+
+  
+  .youtube-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .youtube-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    font-size: 1rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  
+  .youtube-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 0.85rem;
+    margin-top: auto;
+  }
+  
+  .loading-spinner {
+    text-align: center;
+    padding: 2rem;
+    grid-column: 1 / -1;
+  }
+  
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .custom-youtube-widget {
+      background-color: #2a2a2a;
+    }
+    
+    .section-heading {
+      color: #f0f0f0;
+    }
+    
+    .youtube-video-card {
+      background: #333;
+    }
+    
+    .youtube-video-card:hover {
+      background-color: #444;
+    }
+    
+    .youtube-content {
+      color: #f0f0f0;
+    }
+    
+    .youtube-meta {
+      color: #aaa;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const videosContainer = document.getElementById('youtubeVideos');
+  
+  // Fetch videos from the serverless function
+  fetch('https://splendid-beijinho-cc65f7.netlify.app/.netlify/functions/youtube-videos')
+    .then(response => response.json())
+    .then(data => {
+      if (data.success && data.videos && data.videos.length > 0) {
+        // Remove loading spinner
+        videosContainer.innerHTML = '';
+        
+        // Add videos to the grid
+        data.videos.forEach(video => {
+          const videoCard = document.createElement('a');
+          videoCard.href = video.url;
+          videoCard.target = "_blank";
+          videoCard.rel = "noopener noreferrer";
+          videoCard.className = 'youtube-video-card';
+          
+          videoCard.innerHTML = `
+            <div class="youtube-content">
+              <h3 class="youtube-title arabic-text">${video.title}</h3>
+              <div class="youtube-meta">
+                <span>${video.publishedTime}</span>
+                <span>${video.viewCount} • ${video.duration}</span>
+              </div>
+            </div>
+          `;
+          
+          videosContainer.appendChild(videoCard);
+        });
+      } else {
+        videosContainer.innerHTML = '<div class="error-message">عذراً، لا يمكن تحميل الفيديوهات حالياً</div>';
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching YouTube videos:', error);
+      videosContainer.innerHTML = '<div class="error-message">عذراً، حدث خطأ أثناء تحميل الفيديوهات</div>';
+    });
+});
+</script> 
