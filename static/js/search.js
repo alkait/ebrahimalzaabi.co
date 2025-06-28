@@ -52,9 +52,23 @@
     // Strip diacritics from user query
     const raw = stripDiacritics(term);
     const tokens = raw.split(/[\s،؛]+/).filter(Boolean);
-    const wildcardQuery = tokens.map((t) => `${t}*`).join(" ");
+    // Require each token to appear (+) and allow prefix match (*)
+    const wildcardQuery = tokens.map((t) => `+${t}*`).join(" ");
     const results = lunrIndex.search(wildcardQuery);
-    return results.map((res) => pagesIndex.find((page) => page.href === res.ref));
+    let pages = results.map((res) => pagesIndex.find((page) => page.href === res.ref));
+
+    // If the query contains multiple words, further narrow results to those containing the exact phrase
+    if (tokens.length > 1) {
+      const phrase = raw.toLowerCase();
+      pages = pages.filter((page) => {
+        const haystack = stripDiacritics(
+          `${page.title} ${Array.isArray(page.tags) ? page.tags.join(" ") : ""} ${page.content}`
+        ).toLowerCase();
+        return haystack.includes(phrase);
+      });
+    }
+
+    return pages;
   }
 
   function displayResults(results) {
