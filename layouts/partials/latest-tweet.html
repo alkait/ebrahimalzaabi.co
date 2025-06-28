@@ -1,9 +1,12 @@
 <!-- Latest Tweet Widget -->
 {{ $tweetEndpoint := "https://splendid-beijinho-cc65f7.netlify.app/.netlify/functions/pinned-tweet" }}
+{{ $timestamp := now.Unix }}
+{{ $tweetEndpoint := printf "%s?t=%d" $tweetEndpoint $timestamp }}
 {{ $remote := resources.GetRemote $tweetEndpoint }}
 
 {{ if $remote }}
   {{ $tweetData := $remote | transform.Unmarshal }}
+  {{ $profile := index $tweetData "profile" }}
   {{ with $tweetData }}
     {{ with .tweet }}
       <section class="tweet-widget pa3 pa4-ns mt4">
@@ -14,6 +17,18 @@
           </svg>
         </div>
         <div class="tweet-card pa3">
+          {{ with $profile }}
+            {{ $img := index . "imageUrl" }}
+            {{ $name := index . "name" }}
+            {{ $handle := index . "handle" }}
+            <div class="tweet-profile flex items-center mb3">
+              {{ if $img }}<img src="{{ $img }}" alt="{{ $name }}" class="tweet-profile-img br-100 mr3" loading="lazy"/>{{ end }}
+              <div class="tweet-profile-text">
+                {{ if $name }}<span class="tweet-profile-name fw6">{{ $name }}</span><br/>{{ end }}
+                {{ if $handle }}<span class="tweet-profile-handle gray f6">{{ $handle }}</span>{{ end }}
+              </div>
+            </div>
+          {{ end }}
           <blockquote class="lh-copy arabic-text f4 mb3">
             {{ .text }}
           </blockquote>
@@ -30,6 +45,8 @@
           </a>
         </div>
       </section>
+      <!-- DEBUG: Raw JSON response -->
+      <pre class="tweet-json-dump f6 lh-copy bg-near-white pa2 mt2 overflow-auto">{{ $tweetData | jsonify }}</pre>
     {{ end }}
   {{ end }}
 {{ end }}
@@ -75,6 +92,21 @@
     border-radius: 8px;
     padding: 1.5rem;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+  .tweet-profile-img {
+    width: 48px;
+    height: 48px;
+  }
+  .tweet-profile-name {
+    font-size: 1rem;
+  }
+  .tweet-profile-handle {
+    font-size: 0.9rem;
+  }
+  .tweet-json-dump {
+    direction:ltr;
+    white-space: pre-wrap;
+    word-break: break-all;
   }
   /* Dark mode */
   @media (prefers-color-scheme: dark) {
