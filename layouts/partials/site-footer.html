@@ -1,12 +1,30 @@
 <footer class="{{ .Site.Params.background_color_class | compare.Default "bg-black" }} bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between items-center">
     <div>
-      <a class="f5 fw4 hover-white white-70 pv2 ph3 no-underline" href="{{ .Site.Home.Permalink }}" >
+      <a class="f5 fw4 hover-white footer-text pv2 ph3 no-underline" href="{{ .Site.Home.Permalink }}" >
         &copy; {{ with .Site.Copyright | compare.Default .Site.Title }} {{ . | safe.HTML }} {{ now.Format "2006"}} {{ end }}
       </a>
     </div>
-    <div class="white-70 pv2 ph3">
-      <span class="f5 fw4">Developed by <a href="https://digidub.ae" class="white-70 hover-white underline" target="_blank">DigiDub</a></span>
+    <div class="footer-text pv2 ph3">
+      <span class="f5 fw4">Developed by <a href="https://digidub.ae" class="footer-link hover-white underline" target="_blank">DigiDub</a></span>
     </div>
   </div>
-</footer> 
+</footer>
+
+<style>
+/* Footer text styling for light/dark mode */
+.footer-text {
+  color: #333 !important; /* Dark text for light mode */
+}
+
+.footer-link {
+  color: #333 !important; /* Dark text for light mode */
+}
+
+/* Dark mode override */
+@media (prefers-color-scheme: dark) {
+  .footer-text, .footer-link {
+    color: rgba(255, 255, 255, 0.7) !important; /* white-70 equivalent */
+  }
+}
+</style> 
