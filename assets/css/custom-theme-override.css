@@ -159,6 +159,18 @@ h1, h2, h3, h4, h5, h6,
   text-decoration: none;
 }
 
+/* Dark mode support for tags */
+@media (prefers-color-scheme: dark) {
+  .tag-link {
+    color: #e0e0e0 !important; /* Light text for tags */
+  }
+  
+  .tag-link:hover {
+    background-color: #404040 !important;
+    color: #ffffff !important;
+  }
+}
+
 /* ===== BOXED LAYOUT STYLES ===== */
 
 /* Set gray background for the entire viewport */
@@ -169,6 +181,15 @@ html body.boxed-layout.ma0.avenir.bg-near-white {
   background-size: 12px 12px !important; /* Closer dots */
   margin: 0 !important;
   padding: 0 !important;
+}
+
+/* Dark mode support for background */
+@media (prefers-color-scheme: dark) {
+  html,
+  html body.boxed-layout.ma0.avenir.bg-near-white {
+    background-color: #c0c0c0 !important; /* Just a bit darker than light mode */
+    background-image: radial-gradient(#808080 1px, transparent 1px) !important; /* Slightly darker dots */
+  }
 }
 
 /* Add visual separation with padding */
@@ -187,6 +208,61 @@ html body.boxed-layout.ma0.avenir.bg-near-white > footer {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important; /* Slightly stronger shadow for more pop */
   position: relative !important;
   z-index: 1 !important;
+}
+
+/* Dark mode content boxes - placed after light mode to override */
+@media (prefers-color-scheme: dark) {
+  html body.boxed-layout.ma0.avenir.bg-near-white > header,
+  html body.boxed-layout.ma0.avenir.bg-near-white > main,
+  html body.boxed-layout.ma0.avenir.bg-near-white > footer {
+    background-color: #2d2d2d !important; /* Dark background for content boxes */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important; /* Stronger shadow for dark mode */
+  }
+  
+  /* Dark mode text colors for readability */
+  html body.boxed-layout.ma0.avenir.bg-near-white > main,
+  html body.boxed-layout.ma0.avenir.bg-near-white > main *,
+  html body.boxed-layout.ma0.avenir.bg-near-white > footer,
+  html body.boxed-layout.ma0.avenir.bg-near-white > footer *,
+  html body.boxed-layout.ma0.avenir.bg-near-white > header,
+  html body.boxed-layout.ma0.avenir.bg-near-white > header * {
+    color: #e0e0e0 !important; /* Light text for dark backgrounds */
+  }
+  
+  /* Ensure links are visible and accessible */
+  html body.boxed-layout.ma0.avenir.bg-near-white > main a,
+  html body.boxed-layout.ma0.avenir.bg-near-white > footer a {
+    color: #87ceeb !important; /* Light blue for links */
+  }
+  
+  /* Link hover states */
+  html body.boxed-layout.ma0.avenir.bg-near-white > main a:hover,
+  html body.boxed-layout.ma0.avenir.bg-near-white > footer a:hover {
+    color: #add8e6 !important; /* Lighter blue on hover */
+  }
+  
+  /* Special elements that need extra care */
+  html body.boxed-layout.ma0.avenir.bg-near-white > main .intro-link,
+  html body.boxed-layout.ma0.avenir.bg-near-white > main .sheikh-message {
+    background-color: #404040 !important;
+    color: #e0e0e0 !important;
+    border-color: #606060 !important;
+  }
+  
+  html body.boxed-layout.ma0.avenir.bg-near-white > main .intro-link:hover,
+  html body.boxed-layout.ma0.avenir.bg-near-white > main .sheikh-message:hover {
+    background-color: #505050 !important;
+    color: #ffffff !important;
+    border-color: #707070 !important;
+  }
+  
+  /* Ensure proper contrast for white content elements like cards */
+  html body.boxed-layout.ma0.avenir.bg-near-white > main .audio-card,
+  html body.boxed-layout.ma0.avenir.bg-near-white > main .fatwa-item,
+  html body.boxed-layout.ma0.avenir.bg-near-white > main .book-card {
+    background-color: #3a3a3a !important;
+    color: #e0e0e0 !important;
+  }
 }
 
 /* Header spacing - top of the box */
@@ -271,6 +347,15 @@ html body.boxed-layout.ma0.avenir.bg-near-white {
     background-color: #e0e0e0 !important;
     background-image: radial-gradient(#a0a0a0 1px, transparent 1px) !important; /* Much darker dots */
     background-size: 12px 12px !important; /* Closer dots */
+  }
+  
+  /* Dark mode mobile background */
+  @media (prefers-color-scheme: dark) {
+    html,
+    html body.boxed-layout.ma0.avenir.bg-near-white {
+      background-color: #c0c0c0 !important;
+      background-image: radial-gradient(#808080 1px, transparent 1px) !important;
+    }
   }
 
   /* Adjust header, main, and footer on mobile */
