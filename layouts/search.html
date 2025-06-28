@@ -63,6 +63,31 @@
       font-size: 0.95rem;
     }
 
+    /* Search input styling */
+    input#search {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #ffffff;
+      color: #333333;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    input#search::placeholder {
+      color: #888888;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      input#search {
+        background: #2f2f2f;
+        color: #e0e0e0;
+        border: 1px solid #555555;
+      }
+
+      input#search::placeholder {
+        color: #bbbbbb;
+      }
+    }
+
     @media (prefers-color-scheme: dark) {
       .result-card {
         background: #2f2f2f;
