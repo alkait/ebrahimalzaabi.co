@@ -263,6 +263,24 @@ html body.boxed-layout.ma0.avenir.bg-near-white > footer {
     background-color: #3a3a3a !important;
     color: #e0e0e0 !important;
   }
+
+  /* Force dark backgrounds for cards on sub-pages, overruling inline gradients */
+  html body.boxed-layout.ma0.avenir.bg-near-white .book-card,
+  html body.boxed-layout.ma0.avenir.bg-near-white .audio-card {
+    background: #3a3a3a !important; /* Solid dark grey */
+    color: #e0e0e0 !important;
+  }
+
+  /* Ensure action links remain visible */
+  html body.boxed-layout.ma0.avenir.bg-near-white .download-link,
+  html body.boxed-layout.ma0.avenir.bg-near-white .audio-link {
+    color: #87ceeb !important; /* Light blue */
+  }
+  html body.boxed-layout.ma0.avenir.bg-near-white .download-link:hover,
+  html body.boxed-layout.ma0.avenir.bg-near-white .audio-link:hover {
+    background-color: #404040 !important;
+    color: #add8e6 !important;
+  }
 }
 
 /* Header spacing - top of the box */
