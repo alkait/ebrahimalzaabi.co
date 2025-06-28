@@ -285,9 +285,11 @@ html body.boxed-layout.ma0.avenir.bg-near-white > footer {
 }
 
 /* Footer text color override */
-html body.boxed-layout.ma0.avenir.bg-near-white > footer,
-html body.boxed-layout.ma0.avenir.bg-near-white > footer a {
-  color: #333333 !important;
+@media (prefers-color-scheme: light) {
+  html body.boxed-layout.ma0.avenir.bg-near-white > footer,
+  html body.boxed-layout.ma0.avenir.bg-near-white > footer a {
+    color: #333333 !important;
+  }
 }
 
 /* Header styles */
