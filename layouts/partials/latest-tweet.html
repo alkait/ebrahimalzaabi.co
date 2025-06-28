@@ -1,0 +1,53 @@
+<!-- Latest Tweet Widget -->
+{{ $tweetEndpoint := "https://splendid-beijinho-cc65f7.netlify.app/.netlify/functions/pinned-tweet" }}
+{{ $remote := resources.GetRemote $tweetEndpoint }}
+
+{{ if $remote }}
+  {{ $tweetData := $remote | transform.Unmarshal }}
+  {{ with $tweetData }}
+    {{ with .tweet }}
+      <section class="tweet-widget br3 pa3 pa4-ns ba b--black-10 shadow-4 mt4">
+        <blockquote class="lh-copy arabic-text f4 mb3">
+          {{ .text }}
+        </blockquote>
+        <div class="tc mt3">
+          <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="db mb2 link dim f6 f5-ns gray">
+            {{ with .datetime }}<time datetime="{{ . }}">{{ . }}</time>{{ end }}
+          </a>
+          <a href="https://x.com/ebrahimuae1" target="_blank" rel="noopener noreferrer" class="tweet-btn inline-flex items-center pv2 ph3 br-pill bg-black white hover-bg-dark-gray f6 f5-ns">
+            المزيد ↗
+          </a>
+        </div>
+      </section>
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+<style>
+  /* Tweet widget custom styling */
+  .tweet-widget {
+    background-color: #fdfdfd;
+  }
+  .tweet-btn {
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    color: #ffffff !important;
+  }
+  .tweet-btn:hover {
+    background-color: #1d4ed8;
+  }
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    .tweet-widget {
+      background-color: #2d2d2d;
+      border-color: #444 !important;
+    }
+    .tweet-btn {
+      background-color: #1e3a8a;
+      color: #ffffff !important;
+    }
+    .tweet-btn:hover {
+      background-color: #2563eb;
+    }
+  }
+</style> 
