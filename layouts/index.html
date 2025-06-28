@@ -41,7 +41,6 @@
   <div class="flex-l mt2 mw8 center">
     <article class="center cf pv5 ph3 ph4-ns mw8">
       <div class="nested-copy-line-height lh-copy arabic-text f4 nested-links {{ $.Param "text_color" | default "mid-gray" }}">
-        {{ partial "latest-tweet.html" . }}
         {{- .Content -}}
       </div>
       
@@ -77,6 +76,8 @@
           </a>
         </div>
       </div>
+
+      {{ partial "latest-tweet.html" . }}
 
       <!-- Custom YouTube Videos Widget -->
       <div class="custom-youtube-section mt5 mb5">
