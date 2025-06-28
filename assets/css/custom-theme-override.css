@@ -281,6 +281,55 @@ html body.boxed-layout.ma0.avenir.bg-near-white > footer {
     background-color: #404040 !important;
     color: #add8e6 !important;
   }
+
+  /* Dark-mode styles for fatwa items and category chips */
+  html body.boxed-layout.ma0.avenir.bg-near-white .fatwa-item {
+    background-color: #3a3a3a !important;
+    color: #e0e0e0 !important;
+  }
+
+  /* Inline chips inside each fatwa */
+  html body.boxed-layout.ma0.avenir.bg-near-white .fatwa-item .category {
+    background-color: #444 !important;
+    color: #e0e0e0 !important;
+  }
+
+  /* Category list chips on taxonomy page */
+  html body.boxed-layout.ma0.avenir.bg-near-white .categories-list li a {
+    background-color: #444 !important;
+    color: #e0e0e0 !important;
+  }
+
+  html body.boxed-layout.ma0.avenir.bg-near-white .categories-list li a:hover {
+    background-color: #555 !important;
+  }
+
+  /* Fatwa post page elements */
+  html body.boxed-layout.ma0.avenir.bg-near-white .fatwa-post .category {
+    background-color: #444 !important;
+    color: #e0e0e0 !important;
+  }
+
+  html body.boxed-layout.ma0.avenir.bg-near-white .fatwa-question,
+  html body.boxed-layout.ma0.avenir.bg-near-white .fatwa-answer {
+    background-color: #3a3a3a !important;
+    color: #e0e0e0 !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+  }
+
+  /* Ensure headings in Q/A boxes stay visible */
+  html body.boxed-layout.ma0.avenir.bg-near-white .question-header h2,
+  html body.boxed-layout.ma0.avenir.bg-near-white .answer-header h2 {
+    color: #e0e0e0 !important;
+  }
+
+  /* Borders for Q/A boxes in dark mode (slightly muted) */
+  html body.boxed-layout.ma0.avenir.bg-near-white .fatwa-question {
+    border-right: 4px solid #4CAF50 !important; /* keep green */
+  }
+  html body.boxed-layout.ma0.avenir.bg-near-white .fatwa-answer {
+    border-right: 4px solid #2196F3 !important; /* keep blue */
+  }
 }
 
 /* Header spacing - top of the box */
