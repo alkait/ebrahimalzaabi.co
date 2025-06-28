@@ -11,8 +11,9 @@
 
 {{ define "main" }}
   <article class="flex-l flex-wrap justify-between mw8 center ph3 arabic-text">
-    <div class="w-100 mt4">
+    <div class="w-100 mt4 relative">
       <input id="search" type="text" placeholder="أدخل كلمة البحث…" class="f4 pa2 w-100">
+      <button id="clear-search" aria-label="مسح" class="clear-search-btn" style="display:none">×</button>
     </div>
     <ul id="results" class="w-100 list pl0 mt4"></ul>
   </article>
@@ -39,6 +40,33 @@
 
       input#search::placeholder {
         color: #bbbbbb;
+      }
+    }
+
+    /* Clear button */
+    .clear-search-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0.75rem;
+      background: transparent;
+      border: none;
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+      color: #888888;
+    }
+
+    .clear-search-btn:hover {
+      color: #555555;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .clear-search-btn {
+        color: #bbbbbb;
+      }
+      .clear-search-btn:hover {
+        color: #ffffff;
       }
     }
   </style>

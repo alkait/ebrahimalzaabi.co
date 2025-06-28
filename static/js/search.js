@@ -4,6 +4,7 @@
 (function () {
   const searchInput = document.getElementById("search");
   const resultsEl = document.getElementById("results");
+  const clearBtn = document.getElementById("clear-search");
   if (!searchInput) return; // Not on the search page
 
   let lunrIndex;
@@ -74,6 +75,10 @@
   function displayResults(results) {
     resultsEl.innerHTML = "";
 
+    if (clearBtn) {
+      clearBtn.style.display = results.length ? "block" : "none";
+    }
+
     if (!results.length) {
       const msg = document.createElement("p");
       msg.textContent = "لا توجد نتائج";
@@ -102,11 +107,34 @@
 
   searchInput.addEventListener("input", (e) => {
     const term = e.target.value.trim();
+    if (clearBtn) {
+      clearBtn.style.display = term.length ? "block" : "none";
+    }
     if (!lunrIndex || term.length < 2) {
       resultsEl.innerHTML = "";
       return;
     }
     const results = performSearch(term);
     displayResults(results);
+  });
+
+  // Clear helper
+  function clearSearch() {
+    searchInput.value = "";
+    resultsEl.innerHTML = "";
+    if (clearBtn) clearBtn.style.display = "none";
+    searchInput.focus();
+  }
+
+  // Clear button click
+  if (clearBtn) {
+    clearBtn.addEventListener("click", clearSearch);
+  }
+
+  // ESC key handling
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      clearSearch();
+    }
   });
 })(); 
