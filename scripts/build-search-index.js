@@ -59,7 +59,9 @@ function cleanContent(rawContent) {
   const withoutHtml = rawContent.replace(/<[^>]*>/g, " ");
   // Strip markdown syntax
   const withoutMd = removeMd(withoutHtml);
-  return withoutMd.replace(/\s+/g, " ").trim();
+  // Replace punctuation (Arabic and Latin) with spaces to improve tokenization
+  const withoutPunct = withoutMd.replace(/[\.,!\?؛،:؛\-]/g, " ");
+  return withoutPunct.replace(/\s+/g, " ").trim();
 }
 
 function processFile(absPath, filename) {
@@ -70,13 +72,19 @@ function processFile(absPath, filename) {
     const parsed = matter(raw);
     const title = parsed.data.title || path.basename(filename, ".md");
     const tags = parsed.data.tags || parsed.data.categories || [];
-    const contentBody = parsed.content;
+
+    // Combine all string fields from front-matter (e.g., question, answer, description …) with markdown body
+    const fmText = Object.values(parsed.data)
+      .filter((v) => typeof v === "string")
+      .join(" ");
+
+    const combined = `${fmText}\n${parsed.content}`;
 
     return {
       title,
       tags,
       href: buildHref(absPath),
-      content: cleanContent(contentBody),
+      content: cleanContent(combined),
     };
   }
 

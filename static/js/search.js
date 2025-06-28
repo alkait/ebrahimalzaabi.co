@@ -27,6 +27,9 @@
         pagesIndex.forEach(function (doc) {
           this.add(doc);
         }, this);
+
+        // Custom tokenizer separator to split on Arabic punctuation as well
+        lunr.tokenizer.separator = /[\s،؛\-\.]+/;
       });
     })
     .catch((err) => {
@@ -35,7 +38,7 @@
 
   function performSearch(term) {
     // Add trailing wildcard to each token for partial matches
-    const tokens = term.split(/\s+/).filter(Boolean);
+    const tokens = term.split(/[\s،؛]+/).filter(Boolean);
     const wildcardQuery = tokens.map((t) => `${t}*`).join(" ");
     const results = lunrIndex.search(wildcardQuery);
     return results.map((res) => pagesIndex.find((page) => page.href === res.ref));
