@@ -425,4 +425,35 @@ header .tc-l h1 {
   header .tc-l h1 {
     font-size: 3rem !important; /* Slightly larger for desktop */
   }
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Dark-mode overrides for the fatawa question form */
+  #question-form input,
+  #question-form textarea {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+    border: 1px solid #555 !important;
+  }
+
+  #question-form input::placeholder,
+  #question-form textarea::placeholder {
+    color: #a0a0a0 !important;
+  }
+
+  #question-form button {
+    background-color: #555 !important;
+    color: #e0e0e0 !important;
+    border: 1px solid #777 !important;
+    transition: background-color 0.3s ease !important;
+  }
+
+  #question-form button:hover:enabled {
+    background-color: #666 !important;
+  }
+
+  #question-form button:disabled {
+    background-color: #444 !important;
+    color: #888 !important;
+  }
 } 
