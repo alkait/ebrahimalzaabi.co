@@ -45,8 +45,6 @@
           </a>
         </div>
       </section>
-      <!-- DEBUG: Raw JSON response -->
-      <pre class="tweet-json-dump f6 lh-copy bg-near-white pa2 mt2 overflow-auto">{{ $tweetData | jsonify }}</pre>
     {{ end }}
   {{ end }}
 {{ end }}
@@ -97,11 +95,15 @@
     width: 48px;
     height: 48px;
   }
+  .tweet-profile {
+    gap: 0.75rem; /* space between avatar and text */
+  }
   .tweet-profile-name {
     font-size: 1rem;
   }
   .tweet-profile-handle {
     font-size: 0.9rem;
+    margin-top: 0.25rem;
   }
   .tweet-json-dump {
     direction:ltr;
