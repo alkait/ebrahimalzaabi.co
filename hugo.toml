@@ -28,6 +28,11 @@ theme = "ananke"
     name = "الصوتيات"
     pageRef = "/الصوتيات/"
     weight = 5
+  [[menu.main]]
+    identifier = "search"
+    name = "البحث"
+    pageRef = "/search/"
+    weight = 2
 
 [markup]
   [markup.goldmark]

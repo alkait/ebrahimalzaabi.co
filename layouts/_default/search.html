@@ -1,0 +1,23 @@
+{{ define "header" }}
+  <header class="cover bg-top" style="background-color: #333;">
+    <div class="bg-black-60">
+      {{ partial "site-navigation.html" . }}
+      <div class="tc-l pv4 pv6-l ph3 ph4-ns">
+        <h1 class="arabic-text f2 f-subheadline-l fw2 white-90 mb0 lh-title">البحث</h1>
+      </div>
+    </div>
+  </header>
+{{ end }}
+
+{{ define "main" }}
+  <article class="flex-l flex-wrap justify-between mw8 center ph3 arabic-text">
+    <div class="w-100 mt4">
+      <input id="search" type="text" placeholder="أدخل كلمة البحث…" class="f4 pa2 w-100">
+    </div>
+    <ul id="results" class="w-100 list pl0 mt4"></ul>
+  </article>
+
+  <!-- Lunr.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js"></script>
+  <script src="/js/search.js"></script>
+{{ end }} 
