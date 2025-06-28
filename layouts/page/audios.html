@@ -126,5 +126,27 @@
         height: 4em !important;
       }
     }
+
+    @media (prefers-color-scheme: dark) {
+      /* Dark-mode overrides for audio cards */
+      .audios-page .audio-card {
+        background: #3a3a3a !important;
+        color: #e0e0e0 !important;
+      }
+
+      /* Override category gradients */
+      h2 + .audio-grid .audio-card {
+        background: #3a3a3a !important;
+      }
+
+      .audios-page .audio-link {
+        color: #87ceeb !important;
+      }
+
+      .audios-page .audio-link:hover {
+        background-color: #404040 !important;
+        color: #add8e6 !important;
+      }
+    }
   </style>
 {{ end }}
