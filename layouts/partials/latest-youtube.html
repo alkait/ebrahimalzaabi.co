@@ -5,6 +5,12 @@
     <!-- Videos will be loaded here via JavaScript -->
     <div class="loading-spinner">جاري التحميل...</div>
   </div>
+  <div class="see-more-container tc mt4">
+    <a href="https://www.youtube.com/@ebrahim_alzaabi/videos" target="_blank" rel="noopener noreferrer" class="see-more-link">
+      <span class="youtube-icon see-more-icon"></span>
+      <span class="see-more-text arabic-text">مشاهدة المزيد من الفيديوهات</span>
+    </a>
+  </div>
 </div>
 
 <style>
@@ -89,6 +95,38 @@
     grid-column: 1 / -1;
   }
   
+  .see-more-container {
+    margin-top: 1.5rem;
+  }
+  
+  .see-more-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background-color: #f0f0f0;
+    color: #333;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+  
+  .see-more-link:hover {
+    background-color: #FF0000;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.2);
+  }
+  
+  .see-more-icon {
+    margin-right: 0.5rem;
+  }
+  
+  .see-more-text {
+    font-size: 1.1rem;
+  }
+  
   /* Dark mode support */
   @media (prefers-color-scheme: dark) {
     .custom-youtube-widget {
@@ -113,6 +151,16 @@
     
     .youtube-meta {
       color: #aaa;
+    }
+    
+    .see-more-link {
+      background-color: #444;
+      color: #f0f0f0;
+    }
+    
+    .see-more-link:hover {
+      background-color: #FF0000;
+      color: white;
     }
   }
 </style>
