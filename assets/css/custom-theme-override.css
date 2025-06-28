@@ -187,8 +187,8 @@ html body.boxed-layout.ma0.avenir.bg-near-white {
 @media (prefers-color-scheme: dark) {
   html,
   html body.boxed-layout.ma0.avenir.bg-near-white {
-    background-color: #c0c0c0 !important; /* Just a bit darker than light mode */
-    background-image: radial-gradient(#808080 1px, transparent 1px) !important; /* Slightly darker dots */
+    background-color: #000000 !important; /* Pitch black background */
+    background-image: radial-gradient(#4d4d4d 1px, transparent 1px) !important; /* Grey dots */
   }
 }
 
@@ -422,8 +422,8 @@ html body.boxed-layout.ma0.avenir.bg-near-white {
   @media (prefers-color-scheme: dark) {
     html,
     html body.boxed-layout.ma0.avenir.bg-near-white {
-      background-color: #c0c0c0 !important;
-      background-image: radial-gradient(#808080 1px, transparent 1px) !important;
+      background-color: #000000 !important; /* Pitch black background */
+      background-image: radial-gradient(#4d4d4d 1px, transparent 1px) !important; /* Grey dots */
     }
   }
 
