@@ -239,4 +239,28 @@ header.cover h1.arabic-text[data-length="very-long"] {
   header.cover h1.arabic-text[data-length="very-long"] {
     font-size: 1rem !important;
   }
+}
+
+/* Search input styling */
+input#search {
+  border: 1px solid #ccc !important;
+  border-radius: 6px !important;
+  background: #ffffff !important;
+  color: #333333 !important;
+  transition: background-color 0.25s ease, color 0.25s ease !important;
+}
+
+input#search::placeholder {
+  color: #888888 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  input#search {
+    background: #2f2f2f !important;
+    color: #e0e0e0 !important;
+    border: 1px solid #555555 !important;
+  }
+  input#search::placeholder {
+    color: #bbbbbb !important;
+  }
 } 
