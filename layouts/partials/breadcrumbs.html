@@ -10,7 +10,7 @@
   </span>
 
   {{ $section := .Section }}
-  {{ if $section }}
+  {{ if and $section (ne .Kind "term") }}
     {{ $sectionPage := .Site.GetPage "section" $section }}
     {{ if $sectionPage }}
       <span class="ph1 silver">›</span>
