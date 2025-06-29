@@ -1,55 +1,91 @@
 {{/*
-  Breadcrumb navigation
-  Shows hierarchy: Home › Section › Page
-  If language direction is RTL, we keep logical ordering but rely on CSS direction.
+  Custom breadcrumb navigation that completely avoids using page hierarchy
+  Shows only the essential path: Home › Section › Current Page
 */}}
 <nav class="breadcrumbs pv2 ph3 arabic-text f6 mid-gray" aria-label="breadcrumb">
-  {{/* Home */}}
+  {{/* Home link is always shown */}}
   <span class="breadcrumb-item">
     <a href="{{ "/" | relLangURL }}" class="link mid-gray hover-dark-gray no-underline">{{ $.Site.Params.homeLabel | default "الرئيسية" }}</a>
   </span>
 
-  {{ $section := .Section }}
-  {{ if and $section (ne .Kind "term") }}
-    {{ $sectionPage := .Site.GetPage "section" $section }}
-    {{ if $sectionPage }}
-      <span class="ph1 silver">›</span>
-      <span class="breadcrumb-item">
-        <a href="{{ $sectionPage.RelPermalink }}" class="link mid-gray hover-dark-gray no-underline">{{ $sectionPage.Title }}</a>
-      </span>
-    {{ end }}
-  {{ end }}
-
-  {{/* Show current section breadcrumb if it exists and is not the page itself */}}
-  {{ $sec := .CurrentSection }}
-  {{ if and $sec (ne $sec .) }}
+  {{/* 
+    Custom URL-based breadcrumb logic 
+    We'll handle each main section separately
+  */}}
+  
+  {{ $url := .RelPermalink }}
+  
+  {{ if eq $url "/" }}
+    {{/* Home page - no additional breadcrumbs */}}
+  
+  {{ else if eq $url "/مؤلفات/" }}
+    {{/* Publications page */}}
+    <span class="ph1 silver">›</span>
+    <span class="breadcrumb-current dark-gray">المؤلفات</span>
+    
+  {{ else if eq $url "/fatawa/" }}
+    {{/* Fatawa main page */}}
+    <span class="ph1 silver">›</span>
+    <span class="breadcrumb-current dark-gray">الفتاوى</span>
+    
+  {{ else if eq $url "/الصوتيات/" }}
+    {{/* Audio main page */}}
+    <span class="ph1 silver">›</span>
+    <span class="breadcrumb-current dark-gray">الصوتيات</span>
+    
+  {{ else if eq $url "/search/" }}
+    {{/* Search page */}}
+    <span class="ph1 silver">›</span>
+    <span class="breadcrumb-current dark-gray">البحث</span>
+    
+  {{ else if eq $url "/الترجمة/" }}
+    {{/* Biography page */}}
+    <span class="ph1 silver">›</span>
+    <span class="breadcrumb-current dark-gray">الترجمة</span>
+    
+  {{ else if hasPrefix $url "/الصوتيات/" }}
+    {{/* Audio subpages */}}
     <span class="ph1 silver">›</span>
     <span class="breadcrumb-item">
-      <a href="{{ $sec.RelPermalink }}" class="link mid-gray hover-dark-gray no-underline">{{ $sec.Title }}</a>
+      <a href="/الصوتيات/" class="link mid-gray hover-dark-gray no-underline">الصوتيات</a>
     </span>
-  {{ end }}
-
-  {{/* Show direct parent breadcrumb if it exists and is different from section */}}
-  {{ $par := .Parent }}
-  {{ if and $par (ne $par $sec) }}
+    
+    {{ $path := strings.TrimPrefix "/الصوتيات/" $url }}
+    {{ $segments := split $path "/" }}
+    
+    {{ if gt (len $segments) 1 }}
+      {{ $currentPath := "/الصوتيات/" }}
+      
+      {{ range $index, $segment := first (sub (len $segments) 1) $segments }}
+        {{ if ne $segment "" }}
+          {{ $currentPath = printf "%s%s/" $currentPath $segment }}
+          <span class="ph1 silver">›</span>
+          <span class="breadcrumb-item">
+            <a href="{{ $currentPath }}" class="link mid-gray hover-dark-gray no-underline">{{ .Title }}</a>
+          </span>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    
+    {{ if ne .Title "الصوتيات" }}
+      <span class="ph1 silver">›</span>
+      <span class="breadcrumb-current dark-gray">{{ .Title }}</span>
+    {{ end }}
+    
+  {{ else if hasPrefix $url "/fatawa/" }}
+    {{/* Fatawa subpages */}}
     <span class="ph1 silver">›</span>
     <span class="breadcrumb-item">
-      <a href="{{ $par.RelPermalink }}" class="link mid-gray hover-dark-gray no-underline">{{ $par.Title }}</a>
+      <a href="/fatawa/" class="link mid-gray hover-dark-gray no-underline">الفتاوى</a>
     </span>
-  {{ end }}
-
-  {{ if .IsPage }}
-    <span class="ph1 silver">›</span>
-    <span class="breadcrumb-current dark-gray">{{ .Title }}</span>
-  {{ else if eq .Kind "term" }}
-    {{/* Taxonomy term page, e.g., /categories/<term>. We want Home › فتاوى › Term */}}
-    {{ $fatawaPage := .Site.GetPage "page" "fatawa" }}
-    {{ if $fatawaPage }}
+    
+    {{ if ne .Title "الفتاوى" }}
       <span class="ph1 silver">›</span>
-      <span class="breadcrumb-item">
-        <a href="{{ $fatawaPage.RelPermalink }}" class="link mid-gray hover-dark-gray no-underline">{{ $fatawaPage.Title }}</a>
-      </span>
+      <span class="breadcrumb-current dark-gray">{{ .Title }}</span>
     {{ end }}
+    
+  {{ else }}
+    {{/* For any other page, just show the title */}}
     <span class="ph1 silver">›</span>
     <span class="breadcrumb-current dark-gray">{{ .Title }}</span>
   {{ end }}

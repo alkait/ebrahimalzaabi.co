@@ -1,7 +1,7 @@
 ---
 title: "كتاب الصيام - شرح كتاب الوجيز في فقه السنة والكتاب العزيز"
 type: "page"
-layout: "single"
+layout: "audios"
 ---
 
 {{< audio-grid 
