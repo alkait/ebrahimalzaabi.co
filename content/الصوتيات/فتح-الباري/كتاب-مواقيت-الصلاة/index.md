@@ -1,7 +1,7 @@
 ---
 title: "كتاب مواقيت الصلاة - فتح الباري"
 type: "page"
-layout: "single"
+layout: "audios"
 ---
 
 {{< audio-grid 

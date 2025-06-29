@@ -1,7 +1,7 @@
 ---
 title: "الأواني - كتاب الطهارة - شرح عمدة الفقه"
 type: "page"
-layout: "single"
+layout: "audios"
 ---
 
 {{< audio-grid 

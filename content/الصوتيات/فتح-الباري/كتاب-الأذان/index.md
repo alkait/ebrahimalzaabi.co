@@ -1,7 +1,7 @@
 ---
 title: "كتاب الأذان - فتح الباري"
 type: "page"
-layout: "single"
+layout: "audios"
 ---
 
 {{< audio-grid 
