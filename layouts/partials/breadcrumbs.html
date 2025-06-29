@@ -20,6 +20,24 @@
     {{ end }}
   {{ end }}
 
+  {{/* Show current section breadcrumb if it exists and is not the page itself */}}
+  {{ $sec := .CurrentSection }}
+  {{ if and $sec (ne $sec .) }}
+    <span class="ph1 silver">›</span>
+    <span class="breadcrumb-item">
+      <a href="{{ $sec.RelPermalink }}" class="link mid-gray hover-dark-gray no-underline">{{ $sec.Title }}</a>
+    </span>
+  {{ end }}
+
+  {{/* Show direct parent breadcrumb if it exists and is different from section */}}
+  {{ $par := .Parent }}
+  {{ if and $par (ne $par $sec) }}
+    <span class="ph1 silver">›</span>
+    <span class="breadcrumb-item">
+      <a href="{{ $par.RelPermalink }}" class="link mid-gray hover-dark-gray no-underline">{{ $par.Title }}</a>
+    </span>
+  {{ end }}
+
   {{ if .IsPage }}
     <span class="ph1 silver">›</span>
     <span class="breadcrumb-current dark-gray">{{ .Title }}</span>
