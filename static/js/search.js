@@ -9,6 +9,9 @@
 
   let lunrIndex;
   let pagesIndex;
+  // Debounce timer id for the input handler
+  let searchDebounce;
+  const DEBOUNCE_DELAY = 300; // Restored standard debounce delay
 
   // Fetch the index and initialise lunr
   fetch("/js/lunr/PagesIndex.json")
@@ -105,17 +108,31 @@
     });
   }
 
+  // Debounced input handler – performs the search only after the user has stopped
+  // typing for `DEBOUNCE_DELAY` ms. This avoids expensive Lunr queries on every
+  // single keystroke while still providing an instant-search experience.
   searchInput.addEventListener("input", (e) => {
     const term = e.target.value.trim();
+
+    // Immediately toggle the clear-button visibility so UI feels responsive
     if (clearBtn) {
       clearBtn.style.display = term.length ? "block" : "none";
     }
+
+    // Clear any pending search triggered by earlier keystrokes
+    clearTimeout(searchDebounce);
+
+    // If the query is too short or index is not ready, just clear results.
     if (!lunrIndex || term.length < 2) {
       resultsEl.innerHTML = "";
       return;
     }
-    const results = performSearch(term);
-    displayResults(results);
+
+    // Schedule the actual search after the debounce delay
+    searchDebounce = setTimeout(() => {
+      const results = performSearch(term);
+      displayResults(results);
+    }, DEBOUNCE_DELAY);
   });
 
   // Clear helper
@@ -123,6 +140,7 @@
     searchInput.value = "";
     resultsEl.innerHTML = "";
     if (clearBtn) clearBtn.style.display = "none";
+    clearTimeout(searchDebounce);
     searchInput.focus();
   }
 
@@ -135,6 +153,7 @@
   searchInput.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       clearSearch();
+      clearTimeout(searchDebounce);
     }
   });
 })(); 
