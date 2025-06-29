@@ -1,0 +1,48 @@
+{{ $categories := $.Site.Taxonomies.categories }}
+
+{{ if gt (len $categories) 0 }}
+<div class="pa3">
+  <h3 class="f4 b arabic-text">التصنيفات</h3>
+
+  {{/* Determine the maximum post count among all categories */}}
+  {{ $max := 1 }}
+  {{ range $name, $taxonomy := $categories }}
+    {{ if gt $taxonomy.Count $max }}
+      {{ $max = $taxonomy.Count }}
+    {{ end }}
+  {{ end }}
+
+  <div class="arabic-text flex flex-wrap">
+    {{ range $name, $taxonomy := $categories }}
+      {{/* Calculate weight percentage */}}
+      {{ $ratio := div (mul $taxonomy.Count 100) $max }}
+      {{ $sizeClass := "cloud-size-1" }}
+      {{ if ge $ratio 80 }}
+        {{ $sizeClass = "cloud-size-5" }}
+      {{ else if ge $ratio 60 }}
+        {{ $sizeClass = "cloud-size-4" }}
+      {{ else if ge $ratio 40 }}
+        {{ $sizeClass = "cloud-size-3" }}
+      {{ else if ge $ratio 20 }}
+        {{ $sizeClass = "cloud-size-2" }}
+      {{ end }}
+      <a href="/categories/{{ $name | urlize }}/" class="{{ $sizeClass }} tag-link link dark-gray hover-blue ba b--dotted br2 ph2 mr1 mb2 dib">
+        {{ $name }} ({{ $taxonomy.Count }})
+      </a>
+    {{ end }}
+  </div>
+</div>
+
+<style>
+  /* Font-size scaling for cloud weights */
+  .cloud-size-1 { font-size: 0.85rem; }
+  .cloud-size-2 { font-size: 1rem; }
+  .cloud-size-3 { font-size: 1.15rem; }
+  .cloud-size-4 { font-size: 1.3rem; }
+  .cloud-size-5 { font-size: 1.45rem; }
+
+  @media (prefers-color-scheme: dark) {
+    .tag-link { border-color: #555; }
+  }
+</style>
+{{ end }} 
