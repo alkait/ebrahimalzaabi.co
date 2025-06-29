@@ -3,25 +3,25 @@
   Shows hierarchy: Home › Section › Page
   If language direction is RTL, we keep logical ordering but rely on CSS direction.
 */}}
-<nav class="breadcrumbs pv2 ph3 arabic-text f6 white-80" aria-label="breadcrumb">
+<nav class="breadcrumbs pv2 ph3 arabic-text f6 mid-gray" aria-label="breadcrumb">
   {{/* Home */}}
   <span class="breadcrumb-item">
-    <a href="{{ "/" | relLangURL }}" class="link white-80 hover-white no-underline">{{ $.Site.Params.homeLabel | default "الرئيسية" }}</a>
+    <a href="{{ "/" | relLangURL }}" class="link mid-gray hover-dark-gray no-underline">{{ $.Site.Params.homeLabel | default "الرئيسية" }}</a>
   </span>
 
   {{ $section := .Section }}
   {{ if $section }}
     {{ $sectionPage := .Site.GetPage "section" $section }}
     {{ if $sectionPage }}
-      <span class="ph1 white-50">›</span>
+      <span class="ph1 silver">›</span>
       <span class="breadcrumb-item">
-        <a href="{{ $sectionPage.RelPermalink }}" class="link white-80 hover-white no-underline">{{ $sectionPage.Title }}</a>
+        <a href="{{ $sectionPage.RelPermalink }}" class="link mid-gray hover-dark-gray no-underline">{{ $sectionPage.Title }}</a>
       </span>
     {{ end }}
   {{ end }}
 
   {{ if .IsPage }}
-    <span class="ph1 white-50">›</span>
-    <span class="breadcrumb-current light-silver">{{ .Title }}</span>
+    <span class="ph1 silver">›</span>
+    <span class="breadcrumb-current dark-gray">{{ .Title }}</span>
   {{ end }}
 </nav> 
