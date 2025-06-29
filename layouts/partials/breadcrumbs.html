@@ -23,5 +23,16 @@
   {{ if .IsPage }}
     <span class="ph1 silver">›</span>
     <span class="breadcrumb-current dark-gray">{{ .Title }}</span>
+  {{ else if eq .Kind "term" }}
+    {{/* Taxonomy term page, e.g., /categories/<term>. We want Home › فتاوى › Term */}}
+    {{ $fatawaPage := .Site.GetPage "page" "fatawa" }}
+    {{ if $fatawaPage }}
+      <span class="ph1 silver">›</span>
+      <span class="breadcrumb-item">
+        <a href="{{ $fatawaPage.RelPermalink }}" class="link mid-gray hover-dark-gray no-underline">{{ $fatawaPage.Title }}</a>
+      </span>
+    {{ end }}
+    <span class="ph1 silver">›</span>
+    <span class="breadcrumb-current dark-gray">{{ .Title }}</span>
   {{ end }}
 </nav> 
