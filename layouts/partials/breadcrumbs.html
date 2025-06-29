@@ -43,30 +43,23 @@
     <span class="ph1 silver">›</span>
     <span class="breadcrumb-current dark-gray">الترجمة</span>
     
+  {{ else if eq $url "/الصوتيات/شرح-كتاب-حلية-طالب-العلم/" }}
+    {{/* Explicit handling for شرح-كتاب-حلية-طالب-العلم */}}
+    <span class="ph1 silver">›</span>
+    <span class="breadcrumb-item">
+      <a href="/الصوتيات/" class="link mid-gray hover-dark-gray no-underline">الصوتيات</a>
+    </span>
+    <span class="ph1 silver">›</span>
+    <span class="breadcrumb-current dark-gray">{{ .Title }}</span>
+    
   {{ else if hasPrefix $url "/الصوتيات/" }}
-    {{/* Audio subpages */}}
+    {{/* All audio subpages - always show الصوتيات in the breadcrumb */}}
     <span class="ph1 silver">›</span>
     <span class="breadcrumb-item">
       <a href="/الصوتيات/" class="link mid-gray hover-dark-gray no-underline">الصوتيات</a>
     </span>
     
-    {{ $path := strings.TrimPrefix "/الصوتيات/" $url }}
-    {{ $segments := split $path "/" }}
-    
-    {{ if gt (len $segments) 1 }}
-      {{ $currentPath := "/الصوتيات/" }}
-      
-      {{ range $index, $segment := first (sub (len $segments) 1) $segments }}
-        {{ if ne $segment "" }}
-          {{ $currentPath = printf "%s%s/" $currentPath $segment }}
-          <span class="ph1 silver">›</span>
-          <span class="breadcrumb-item">
-            <a href="{{ $currentPath }}" class="link mid-gray hover-dark-gray no-underline">{{ .Title }}</a>
-          </span>
-        {{ end }}
-      {{ end }}
-    {{ end }}
-    
+    {{/* For all pages under الصوتيات, show the current page title */}}
     {{ if ne .Title "الصوتيات" }}
       <span class="ph1 silver">›</span>
       <span class="breadcrumb-current dark-gray">{{ .Title }}</span>
