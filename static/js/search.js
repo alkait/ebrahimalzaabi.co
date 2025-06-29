@@ -89,6 +89,59 @@
       return;
     }
 
+    // Determine search tokens once (based on current input value)
+    const rawInputStripped = stripDiacritics(searchInput.value.trim());
+    const tokens = rawInputStripped.split(/[\s،؛]+/).filter(Boolean);
+
+    // For highlighting: if the query is multi-word, highlight only the full phrase
+    const highlightPatterns = tokens.length > 1 ? [searchInput.value.trim()] : tokens;
+
+    // Helper: build snippet around first occurrence of any token
+    function buildSnippet(text, tokens, maxLen = 120, context = 40) {
+      if (!text) return "";
+
+      const stripped = stripDiacritics(text).toLowerCase();
+
+      // 1) Try to locate the full query phrase when it contains multiple words
+      const fullPhrase = tokens.length > 1 ? tokens.join(" ") : null;
+      let idx = fullPhrase ? stripped.indexOf(fullPhrase.toLowerCase()) : -1;
+
+      // 2) If phrase not found, fall back to first individual token match
+      if (idx === -1) {
+        for (const t of tokens) {
+          const i = stripped.indexOf(t.toLowerCase());
+          if (i !== -1 && (idx === -1 || i < idx)) {
+            idx = i;
+          }
+        }
+      }
+
+      // If still no match, fallback to start of text
+      if (idx === -1) {
+        return text.slice(0, maxLen) + (text.length > maxLen ? "…" : "");
+      }
+
+      const start = Math.max(0, idx - context);
+      const end = Math.min(text.length, start + maxLen);
+      let snippet = text.slice(start, end);
+
+      if (start > 0) snippet = "…" + snippet;
+      if (end < text.length) snippet = snippet + "…";
+
+      return snippet;
+    }
+
+    // Helper: highlight tokens within HTML string using <mark>
+    function highlight(text, patterns) {
+      patterns.forEach((t) => {
+        if (!t) return;
+        const escaped = t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const regex = new RegExp(`(${escaped})`, "gi");
+        text = text.replace(regex, '<mark>$1</mark>');
+      });
+      return text;
+    }
+
     results.forEach((page) => {
       const card = document.createElement("div");
       card.className = "result-card";
@@ -97,10 +150,13 @@
         window.location.href = page.href;
       });
 
-      const snippet = page.content ? page.content.slice(0, 120) + "…" : "";
+      const snippetRaw = buildSnippet(page.content || "", tokens);
+      const snippet = highlight(snippetRaw, highlightPatterns);
+
+      const titleHighlighted = highlight(page.title, highlightPatterns);
 
       card.innerHTML = `
-        <h3><a href="${page.href}">${page.title}</a></h3>
+        <h3><a href="${page.href}">${titleHighlighted}</a></h3>
         <p>${snippet}</p>
       `;
 
@@ -111,6 +167,7 @@
   // Debounced input handler – performs the search only after the user has stopped
   // typing for `DEBOUNCE_DELAY` ms. This avoids expensive Lunr queries on every
   // single keystroke while still providing an instant-search experience.
+
   searchInput.addEventListener("input", (e) => {
     const term = e.target.value.trim();
 
@@ -156,4 +213,4 @@
       clearTimeout(searchDebounce);
     }
   });
-})(); 
+})();
